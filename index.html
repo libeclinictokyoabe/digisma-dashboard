@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>デジスマ支払 使用率ダッシュボード</title>
+<title>ãã¸ã¹ãæ¯æ ä½¿ç¨çããã·ã¥ãã¼ã</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
   :root {
@@ -226,12 +226,12 @@
 
 <div class="header">
   <div>
-    <h1>デジスマ支払 使用率ダッシュボード</h1>
-    <div class="subtitle">とどろきLAクリニック</div>
+    <h1>ãã¸ã¹ãæ¯æ ä½¿ç¨çããã·ã¥ãã¼ã</h1>
+    <div class="subtitle">ã¨ã©ããLAã¯ãªããã¯</div>
   </div>
   <div class="header-actions">
     <span class="last-updated" id="lastUpdated"></span>
-    <button class="btn btn-outline" onclick="toggleFileInput()">データ読込</button>
+    <button class="btn btn-outline" onclick="toggleFileInput()">ãã¼ã¿èª­è¾¼</button>
   </div>
 </div>
 
@@ -239,29 +239,29 @@
   <!-- File Input -->
   <div class="file-input-area" id="fileInputArea">
     <input type="file" id="fileInput" accept=".json" style="display:none" onchange="loadFile(event)">
-    <p style="margin-bottom:8px; font-weight:600;">digisma_data.json を選択してください</p>
-    <p style="font-size:12px; color:var(--gray-500);">最新のデータファイルをドラッグ＆ドロップまたはクリックして読み込み</p>
+    <p style="margin-bottom:8px; font-weight:600;">digisma_data.json ãé¸æãã¦ãã ãã</p>
+    <p style="font-size:12px; color:var(--gray-500);">ææ°ã®ãã¼ã¿ãã¡ã¤ã«ããã©ãã°ï¼ãã­ããã¾ãã¯ã¯ãªãã¯ãã¦èª­ã¿è¾¼ã¿</p>
   </div>
 
   <!-- Summary Cards -->
   <div class="summary-cards" id="summaryCards">
     <div class="card">
-      <div class="card-label">全体 使用率</div>
+      <div class="card-label">å¨ä½ ä½¿ç¨ç</div>
       <div class="card-value primary" id="overallRate">--%</div>
-      <div class="card-sub" id="overallPeriod">2025/10/01〜</div>
+      <div class="card-sub" id="overallPeriod">2025/10/01ã</div>
     </div>
     <div class="card">
-      <div class="card-label">今月 使用率</div>
+      <div class="card-label">ä»æ ä½¿ç¨ç</div>
       <div class="card-value success" id="monthRate">--%</div>
       <div class="card-sub" id="monthLabel"></div>
     </div>
     <div class="card">
-      <div class="card-label">本日</div>
+      <div class="card-label">æ¬æ¥</div>
       <div class="card-value" id="todayRate">--%</div>
       <div class="card-sub" id="todayDetail"></div>
     </div>
     <div class="card">
-      <div class="card-label">集計日数</div>
+      <div class="card-label">éè¨æ¥æ°</div>
       <div class="card-value" style="color:var(--gray-700)" id="totalDays">--</div>
       <div class="card-sub" id="totalDaysSub"></div>
     </div>
@@ -270,8 +270,8 @@
   <!-- Monthly Comparison Chart -->
   <div class="section">
     <div class="section-title">
-      月次推移
-      <span class="badge">月別比較</span>
+      ææ¬¡æ¨ç§»
+      <span class="badge">æå¥æ¯è¼</span>
     </div>
     <div class="chart-container">
       <canvas id="monthlyChart"></canvas>
@@ -281,8 +281,8 @@
   <!-- Tabs: Monthly / Daily -->
   <div class="section">
     <div class="tabs">
-      <button class="tab active" onclick="switchTab('monthly')">月次集計</button>
-      <button class="tab" onclick="switchTab('daily')">日次データ</button>
+      <button class="tab active" onclick="switchTab('monthly')">ææ¬¡éè¨</button>
+      <button class="tab" onclick="switchTab('daily')">æ¥æ¬¡ãã¼ã¿</button>
     </div>
 
     <!-- Monthly Table -->
@@ -290,12 +290,12 @@
       <table class="data-table">
         <thead>
           <tr>
-            <th style="width:90px;">月</th>
-            <th style="width:70px;" class="text-right">総件数</th>
-            <th style="width:70px;" class="text-right">使用</th>
-            <th style="width:70px;" class="text-right">未使用</th>
-            <th>使用率</th>
-            <th style="width:80px;" class="text-right">前月比</th>
+            <th style="width:90px;">æ</th>
+            <th style="width:70px;" class="text-right">ç·ä»¶æ°</th>
+            <th style="width:70px;" class="text-right">ä½¿ç¨</th>
+            <th style="width:70px;" class="text-right">æªä½¿ç¨</th>
+            <th>ä½¿ç¨ç</th>
+            <th style="width:80px;" class="text-right">åææ¯</th>
           </tr>
         </thead>
         <tbody id="monthlyTableBody"></tbody>
@@ -307,12 +307,12 @@
       <table class="data-table">
         <thead>
           <tr>
-            <th style="width:130px;">日付</th>
-            <th style="width:50px;" class="text-center">曜日</th>
-            <th style="width:70px;" class="text-right">総件数</th>
-            <th style="width:70px;" class="text-right">使用</th>
-            <th style="width:70px;" class="text-right">未使用</th>
-            <th>使用率</th>
+            <th style="width:130px;">æ¥ä»</th>
+            <th style="width:50px;" class="text-center">ææ¥</th>
+            <th style="width:70px;" class="text-right">ç·ä»¶æ°</th>
+            <th style="width:70px;" class="text-right">ä½¿ç¨</th>
+            <th style="width:70px;" class="text-right">æªä½¿ç¨</th>
+            <th>ä½¿ç¨ç</th>
           </tr>
         </thead>
         <tbody id="dailyTableBody"></tbody>
@@ -323,10 +323,10 @@
 
 <script>
 // ===== EMBEDDED DATA (updated by collection script) =====
-let DATA = {"daily":{"20251001":{"date":"2025-10-01","total":39,"withIcon":28,"withoutIcon":11,"usageRate":71.79},"20251002":{"date":"2025-10-02","total":30,"withIcon":17,"withoutIcon":13,"usageRate":56.67},"20251003":{"date":"2025-10-03","total":23,"withIcon":19,"withoutIcon":4,"usageRate":82.61},"20251004":{"date":"2025-10-04","total":55,"withIcon":32,"withoutIcon":23,"usageRate":58.18},"20251005":{"date":"2025-10-05","total":33,"withIcon":21,"withoutIcon":12,"usageRate":63.64},"20251006":{"date":"2025-10-06","total":18,"withIcon":14,"withoutIcon":4,"usageRate":77.78},"20251007":{"date":"2025-10-07","total":32,"withIcon":13,"withoutIcon":19,"usageRate":40.63},"20251008":{"date":"2025-10-08","total":21,"withIcon":14,"withoutIcon":7,"usageRate":66.67},"20251009":{"date":"2025-10-09","total":34,"withIcon":29,"withoutIcon":5,"usageRate":85.29},"20251010":{"date":"2025-10-10","total":34,"withIcon":20,"withoutIcon":14,"usageRate":58.82},"20251011":{"date":"2025-10-11","total":37,"withIcon":26,"withoutIcon":11,"usageRate":70.27},"20251012":{"date":"2025-10-12","total":37,"withIcon":21,"withoutIcon":16,"usageRate":56.76},"20251013":{"date":"2025-10-13","total":55,"withIcon":40,"withoutIcon":15,"usageRate":72.73},"20251014":{"date":"2025-10-14","total":32,"withIcon":18,"withoutIcon":14,"usageRate":56.25},"20251015":{"date":"2025-10-15","total":38,"withIcon":20,"withoutIcon":18,"usageRate":52.63},"20251016":{"date":"2025-10-16","total":32,"withIcon":18,"withoutIcon":14,"usageRate":56.25},"20251017":{"date":"2025-10-17","total":33,"withIcon":18,"withoutIcon":15,"usageRate":54.55},"20251018":{"date":"2025-10-18","total":45,"withIcon":32,"withoutIcon":13,"usageRate":71.11},"20251019":{"date":"2025-10-19","total":35,"withIcon":27,"withoutIcon":8,"usageRate":77.14},"20251020":{"date":"2025-10-20","total":30,"withIcon":20,"withoutIcon":10,"usageRate":66.67},"20251021":{"date":"2025-10-21","total":24,"withIcon":19,"withoutIcon":5,"usageRate":79.17},"20251022":{"date":"2025-10-22","total":20,"withIcon":11,"withoutIcon":9,"usageRate":55},"20251023":{"date":"2025-10-23","total":21,"withIcon":18,"withoutIcon":3,"usageRate":85.71},"20251024":{"date":"2025-10-24","total":24,"withIcon":14,"withoutIcon":10,"usageRate":58.33},"20251025":{"date":"2025-10-25","total":62,"withIcon":43,"withoutIcon":19,"usageRate":69.35},"20251026":{"date":"2025-10-26","total":47,"withIcon":39,"withoutIcon":8,"usageRate":82.98},"20251027":{"date":"2025-10-27","total":38,"withIcon":29,"withoutIcon":9,"usageRate":76.32},"20251028":{"date":"2025-10-28","total":28,"withIcon":20,"withoutIcon":8,"usageRate":71.43},"20251029":{"date":"2025-10-29","total":41,"withIcon":29,"withoutIcon":12,"usageRate":70.73},"20251030":{"date":"2025-10-30","total":31,"withIcon":19,"withoutIcon":12,"usageRate":61.29},"20251031":{"date":"2025-10-31","total":31,"withIcon":21,"withoutIcon":10,"usageRate":67.74},"20251101":{"date":"2025-11-01","total":71,"withIcon":51,"withoutIcon":20,"usageRate":71.83},"20251102":{"date":"2025-11-02","total":62,"withIcon":42,"withoutIcon":20,"usageRate":67.74},"20251103":{"date":"2025-11-03","total":64,"withIcon":40,"withoutIcon":24,"usageRate":62.5},"20251104":{"date":"2025-11-04","total":51,"withIcon":37,"withoutIcon":14,"usageRate":72.55},"20251105":{"date":"2025-11-05","total":51,"withIcon":32,"withoutIcon":19,"usageRate":62.75},"20251106":{"date":"2025-11-06","total":52,"withIcon":31,"withoutIcon":21,"usageRate":59.62},"20251107":{"date":"2025-11-07","total":41,"withIcon":30,"withoutIcon":11,"usageRate":73.17},"20251108":{"date":"2025-11-08","total":58,"withIcon":37,"withoutIcon":21,"usageRate":63.79},"20251109":{"date":"2025-11-09","total":67,"withIcon":46,"withoutIcon":21,"usageRate":68.66},"20251110":{"date":"2025-11-10","total":49,"withIcon":35,"withoutIcon":14,"usageRate":71.43},"20251111":{"date":"2025-11-11","total":39,"withIcon":29,"withoutIcon":10,"usageRate":74.36},"20251112":{"date":"2025-11-12","total":43,"withIcon":22,"withoutIcon":21,"usageRate":51.16},"20251113":{"date":"2025-11-13","total":50,"withIcon":35,"withoutIcon":15,"usageRate":70},"20251114":{"date":"2025-11-14","total":41,"withIcon":26,"withoutIcon":15,"usageRate":63.41},"20251115":{"date":"2025-11-15","total":69,"withIcon":42,"withoutIcon":27,"usageRate":60.87},"20251116":{"date":"2025-11-16","total":74,"withIcon":47,"withoutIcon":27,"usageRate":63.51},"20251117":{"date":"2025-11-17","total":60,"withIcon":37,"withoutIcon":23,"usageRate":61.67},"20251118":{"date":"2025-11-18","total":43,"withIcon":35,"withoutIcon":8,"usageRate":81.4},"20251119":{"date":"2025-11-19","total":41,"withIcon":25,"withoutIcon":16,"usageRate":60.98},"20251120":{"date":"2025-11-20","total":52,"withIcon":38,"withoutIcon":14,"usageRate":73.08},"20251121":{"date":"2025-11-21","total":29,"withIcon":16,"withoutIcon":13,"usageRate":55.17},"20251122":{"date":"2025-11-22","total":96,"withIcon":66,"withoutIcon":30,"usageRate":68.75},"20251123":{"date":"2025-11-23","total":65,"withIcon":43,"withoutIcon":22,"usageRate":66.15},"20251124":{"date":"2025-11-24","total":63,"withIcon":43,"withoutIcon":20,"usageRate":68.25},"20251125":{"date":"2025-11-25","total":41,"withIcon":24,"withoutIcon":17,"usageRate":58.54},"20251126":{"date":"2025-11-26","total":48,"withIcon":36,"withoutIcon":12,"usageRate":75},"20251127":{"date":"2025-11-27","total":47,"withIcon":31,"withoutIcon":16,"usageRate":65.96},"20251128":{"date":"2025-11-28","total":35,"withIcon":21,"withoutIcon":14,"usageRate":60},"20251129":{"date":"2025-11-29","total":53,"withIcon":38,"withoutIcon":15,"usageRate":71.7},"20251130":{"date":"2025-11-30","total":44,"withIcon":28,"withoutIcon":16,"usageRate":63.64},"20251201":{"date":"2025-12-01","total":30,"withIcon":21,"withoutIcon":9,"usageRate":70},"20251202":{"date":"2025-12-02","total":42,"withIcon":37,"withoutIcon":5,"usageRate":88.1},"20251203":{"date":"2025-12-03","total":42,"withIcon":25,"withoutIcon":17,"usageRate":59.52},"20251204":{"date":"2025-12-04","total":32,"withIcon":19,"withoutIcon":13,"usageRate":59.38},"20251205":{"date":"2025-12-05","total":36,"withIcon":28,"withoutIcon":8,"usageRate":77.78},"20251206":{"date":"2025-12-06","total":69,"withIcon":53,"withoutIcon":16,"usageRate":76.81},"20251207":{"date":"2025-12-07","total":53,"withIcon":39,"withoutIcon":14,"usageRate":73.58},"20251208":{"date":"2025-12-08","total":37,"withIcon":28,"withoutIcon":9,"usageRate":75.68},"20251209":{"date":"2025-12-09","total":43,"withIcon":33,"withoutIcon":10,"usageRate":76.74},"20251210":{"date":"2025-12-10","total":42,"withIcon":30,"withoutIcon":12,"usageRate":71.43},"20251211":{"date":"2025-12-11","total":42,"withIcon":34,"withoutIcon":8,"usageRate":80.95},"20251212":{"date":"2025-12-12","total":36,"withIcon":31,"withoutIcon":5,"usageRate":86.11},"20251213":{"date":"2025-12-13","total":52,"withIcon":38,"withoutIcon":14,"usageRate":73.08},"20251214":{"date":"2025-12-14","total":53,"withIcon":41,"withoutIcon":12,"usageRate":77.36},"20251215":{"date":"2025-12-15","total":46,"withIcon":33,"withoutIcon":13,"usageRate":71.74},"20251216":{"date":"2025-12-16","total":38,"withIcon":25,"withoutIcon":13,"usageRate":65.79},"20251217":{"date":"2025-12-17","total":34,"withIcon":25,"withoutIcon":9,"usageRate":73.53},"20251218":{"date":"2025-12-18","total":45,"withIcon":36,"withoutIcon":9,"usageRate":80},"20251219":{"date":"2025-12-19","total":28,"withIcon":20,"withoutIcon":8,"usageRate":71.43},"20251220":{"date":"2025-12-20","total":49,"withIcon":38,"withoutIcon":11,"usageRate":77.55},"20251221":{"date":"2025-12-21","total":39,"withIcon":30,"withoutIcon":9,"usageRate":76.92},"20251222":{"date":"2025-12-22","total":38,"withIcon":29,"withoutIcon":9,"usageRate":76.32},"20251223":{"date":"2025-12-23","total":44,"withIcon":35,"withoutIcon":9,"usageRate":79.55},"20251224":{"date":"2025-12-24","total":29,"withIcon":24,"withoutIcon":5,"usageRate":82.76},"20251225":{"date":"2025-12-25","total":34,"withIcon":25,"withoutIcon":9,"usageRate":73.53},"20251226":{"date":"2025-12-26","total":37,"withIcon":30,"withoutIcon":7,"usageRate":81.08},"20251227":{"date":"2025-12-27","total":69,"withIcon":49,"withoutIcon":20,"usageRate":71.01},"20251228":{"date":"2025-12-28","total":64,"withIcon":47,"withoutIcon":17,"usageRate":73.44},"20251229":{"date":"2025-12-29","total":38,"withIcon":24,"withoutIcon":14,"usageRate":63.16},"20251230":{"date":"2025-12-30","total":55,"withIcon":37,"withoutIcon":18,"usageRate":67.27},"20251231":{"date":"2025-12-31","total":47,"withIcon":29,"withoutIcon":18,"usageRate":61.7},"20260101":{"date":"2026-01-01","total":46,"withIcon":32,"withoutIcon":14,"usageRate":69.57},"20260102":{"date":"2026-01-02","total":47,"withIcon":36,"withoutIcon":11,"usageRate":76.6},"20260103":{"date":"2026-01-03","total":57,"withIcon":35,"withoutIcon":22,"usageRate":61.4},"20260104":{"date":"2026-01-04","total":56,"withIcon":39,"withoutIcon":17,"usageRate":69.64},"20260105":{"date":"2026-01-05","total":44,"withIcon":33,"withoutIcon":11,"usageRate":75},"20260106":{"date":"2026-01-06","total":45,"withIcon":32,"withoutIcon":13,"usageRate":71.11},"20260107":{"date":"2026-01-07","total":42,"withIcon":27,"withoutIcon":15,"usageRate":64.29},"20260108":{"date":"2026-01-08","total":43,"withIcon":26,"withoutIcon":17,"usageRate":60.47},"20260109":{"date":"2026-01-09","total":34,"withIcon":23,"withoutIcon":11,"usageRate":67.65},"20260110":{"date":"2026-01-10","total":64,"withIcon":51,"withoutIcon":13,"usageRate":79.69},"20260111":{"date":"2026-01-11","total":60,"withIcon":48,"withoutIcon":12,"usageRate":80},"20260112":{"date":"2026-01-12","total":59,"withIcon":36,"withoutIcon":23,"usageRate":61.02},"20260113":{"date":"2026-01-13","total":57,"withIcon":49,"withoutIcon":8,"usageRate":85.96},"20260114":{"date":"2026-01-14","total":30,"withIcon":24,"withoutIcon":6,"usageRate":80},"20260115":{"date":"2026-01-15","total":35,"withIcon":26,"withoutIcon":9,"usageRate":74.29},"20260116":{"date":"2026-01-16","total":30,"withIcon":17,"withoutIcon":13,"usageRate":56.67},"20260117":{"date":"2026-01-17","total":61,"withIcon":50,"withoutIcon":11,"usageRate":81.97},"20260118":{"date":"2026-01-18","total":38,"withIcon":29,"withoutIcon":9,"usageRate":76.32},"20260119":{"date":"2026-01-19","total":35,"withIcon":24,"withoutIcon":11,"usageRate":68.57},"20260120":{"date":"2026-01-20","total":48,"withIcon":42,"withoutIcon":6,"usageRate":87.5},"20260121":{"date":"2026-01-21","total":32,"withIcon":23,"withoutIcon":9,"usageRate":71.88},"20260122":{"date":"2026-01-22","total":45,"withIcon":30,"withoutIcon":15,"usageRate":66.67},"20260123":{"date":"2026-01-23","total":29,"withIcon":21,"withoutIcon":8,"usageRate":72.41},"20260124":{"date":"2026-01-24","total":55,"withIcon":38,"withoutIcon":17,"usageRate":69.09},"20260125":{"date":"2026-01-25","total":59,"withIcon":40,"withoutIcon":19,"usageRate":67.8},"20260126":{"date":"2026-01-26","total":44,"withIcon":36,"withoutIcon":8,"usageRate":81.82},"20260127":{"date":"2026-01-27","total":39,"withIcon":29,"withoutIcon":10,"usageRate":74.36},"20260128":{"date":"2026-01-28","total":48,"withIcon":38,"withoutIcon":10,"usageRate":79.17},"20260129":{"date":"2026-01-29","total":33,"withIcon":23,"withoutIcon":10,"usageRate":69.7},"20260130":{"date":"2026-01-30","total":35,"withIcon":29,"withoutIcon":6,"usageRate":82.86},"20260131":{"date":"2026-01-31","total":78,"withIcon":52,"withoutIcon":26,"usageRate":66.67},"20260201":{"date":"2026-02-01","total":80,"withIcon":51,"withoutIcon":29,"usageRate":63.75},"20260202":{"date":"2026-02-02","total":38,"withIcon":23,"withoutIcon":15,"usageRate":60.53},"20260203":{"date":"2026-02-03","total":53,"withIcon":39,"withoutIcon":14,"usageRate":73.58},"20260204":{"date":"2026-02-04","total":43,"withIcon":29,"withoutIcon":14,"usageRate":67.44},"20260205":{"date":"2026-02-05","total":49,"withIcon":31,"withoutIcon":18,"usageRate":63.27},"20260206":{"date":"2026-02-06","total":64,"withIcon":45,"withoutIcon":19,"usageRate":70.31},"20260207":{"date":"2026-02-07","total":56,"withIcon":42,"withoutIcon":14,"usageRate":75},"20260208":{"date":"2026-02-08","total":65,"withIcon":49,"withoutIcon":16,"usageRate":75.38},"20260209":{"date":"2026-02-09","total":55,"withIcon":39,"withoutIcon":16,"usageRate":70.91},"20260210":{"date":"2026-02-10","total":49,"withIcon":37,"withoutIcon":12,"usageRate":75.51},"20260211":{"date":"2026-02-11","total":73,"withIcon":51,"withoutIcon":22,"usageRate":69.86},"20260212":{"date":"2026-02-12","total":71,"withIcon":55,"withoutIcon":16,"usageRate":77.46},"20260213":{"date":"2026-02-13","total":36,"withIcon":24,"withoutIcon":12,"usageRate":66.67},"20260214":{"date":"2026-02-14","total":72,"withIcon":53,"withoutIcon":19,"usageRate":73.61},"20260215":{"date":"2026-02-15","total":74,"withIcon":58,"withoutIcon":16,"usageRate":78.38},"20260216":{"date":"2026-02-16","total":46,"withIcon":37,"withoutIcon":9,"usageRate":80.43},"20260217":{"date":"2026-02-17","total":48,"withIcon":37,"withoutIcon":11,"usageRate":77.08},"20260218":{"date":"2026-02-18","total":36,"withIcon":22,"withoutIcon":14,"usageRate":61.11},"20260219":{"date":"2026-02-19","total":60,"withIcon":41,"withoutIcon":19,"usageRate":68.33},"20260220":{"date":"2026-02-20","total":40,"withIcon":31,"withoutIcon":9,"usageRate":77.5},"20260221":{"date":"2026-02-21","total":80,"withIcon":62,"withoutIcon":18,"usageRate":77.5},"20260222":{"date":"2026-02-22","total":56,"withIcon":39,"withoutIcon":17,"usageRate":69.64},"20260223":{"date":"2026-02-23","total":76,"withIcon":62,"withoutIcon":14,"usageRate":81.58},"20260224":{"date":"2026-02-24","total":56,"withIcon":41,"withoutIcon":15,"usageRate":73.21},"20260225":{"date":"2026-02-25","total":53,"withIcon":42,"withoutIcon":11,"usageRate":79.25},"20260226":{"date":"2026-02-26","total":47,"withIcon":39,"withoutIcon":8,"usageRate":82.98},"20260227":{"date":"2026-02-27","total":45,"withIcon":39,"withoutIcon":6,"usageRate":86.67},"20260228":{"date":"2026-02-28","total":79,"withIcon":61,"withoutIcon":18,"usageRate":77.22},"20260301":{"date":"2026-03-01","total":74,"withIcon":53,"withoutIcon":21,"usageRate":71.62},"20260302":{"date":"2026-03-02","total":47,"withIcon":33,"withoutIcon":14,"usageRate":70.21},"20260303":{"date":"2026-03-03","total":47,"withIcon":34,"withoutIcon":13,"usageRate":72.34},"20260304":{"date":"2026-03-04","total":52,"withIcon":37,"withoutIcon":15,"usageRate":71.15},"20260305":{"date":"2026-03-05","total":42,"withIcon":30,"withoutIcon":12,"usageRate":71.43},"20260306":{"date":"2026-03-06","total":44,"withIcon":27,"withoutIcon":17,"usageRate":61.36},"20260307":{"date":"2026-03-07","total":65,"withIcon":50,"withoutIcon":15,"usageRate":76.92},"20260308":{"date":"2026-03-08","total":62,"withIcon":44,"withoutIcon":18,"usageRate":70.97},"20260309":{"date":"2026-03-09","total":54,"withIcon":37,"withoutIcon":17,"usageRate":68.52},"20260310":{"date":"2026-03-10","total":25,"withIcon":16,"withoutIcon":9,"usageRate":64},"20260311":{"date":"2026-03-11","total":45,"withIcon":35,"withoutIcon":10,"usageRate":77.78},"20260312":{"date":"2026-03-12","total":32,"withIcon":25,"withoutIcon":7,"usageRate":78.13},"20260313":{"date":"2026-03-13","total":53,"withIcon":32,"withoutIcon":21,"usageRate":60.38},"20260314":{"date":"2026-03-14","total":67,"withIcon":47,"withoutIcon":20,"usageRate":70.15},"20260315":{"date":"2026-03-15","total":58,"withIcon":39,"withoutIcon":19,"usageRate":67.24},"20260316":{"date":"2026-03-16","total":62,"withIcon":40,"withoutIcon":22,"usageRate":64.52},"20260317":{"date":"2026-03-17","total":56,"withIcon":44,"withoutIcon":12,"usageRate":78.57},"20260318":{"date":"2026-03-18","total":48,"withIcon":33,"withoutIcon":15,"usageRate":68.75},"20260319":{"date":"2026-03-19","total":36,"withIcon":27,"withoutIcon":9,"usageRate":75},"20260320":{"date":"2026-03-20","total":50,"withIcon":37,"withoutIcon":13,"usageRate":74},"20260321":{"date":"2026-03-21","total":48,"withIcon":31,"withoutIcon":17,"usageRate":64.58},"20260322":{"date":"2026-03-22","total":52,"withIcon":39,"withoutIcon":13,"usageRate":75},"20260323":{"date":"2026-03-23","total":56,"withIcon":36,"withoutIcon":20,"usageRate":64.29},"20260324":{"date":"2026-03-24","total":50,"withIcon":32,"withoutIcon":18,"usageRate":64},"20260325":{"date":"2026-03-25","total":41,"withIcon":27,"withoutIcon":14,"usageRate":65.85},"20260326":{"date":"2026-03-26","total":51,"withIcon":40,"withoutIcon":11,"usageRate":78.43},"20260327":{"date":"2026-03-27","total":36,"withIcon":24,"withoutIcon":12,"usageRate":66.67},"20260328":{"date":"2026-03-28","total":59,"withIcon":41,"withoutIcon":18,"usageRate":69.49},"20260329":{"date":"2026-03-29","total":50,"withIcon":34,"withoutIcon":16,"usageRate":68},"20260330":{"date":"2026-03-30","total":54,"withIcon":34,"withoutIcon":20,"usageRate":62.96},"20260331":{"date":"2026-03-31","total":37,"withIcon":28,"withoutIcon":9,"usageRate":75.68},"20260401":{"date":"2026-04-01","total":36,"withIcon":26,"withoutIcon":10,"usageRate":72.22},"20260402":{"date":"2026-04-02","total":31,"withIcon":23,"withoutIcon":8,"usageRate":74.19},"20260403":{"date":"2026-04-03","total":26,"withIcon":19,"withoutIcon":7,"usageRate":73.08},"20260404":{"date":"2026-04-04","total":57,"withIcon":40,"withoutIcon":17,"usageRate":70.18},"20260405":{"date":"2026-04-05","total":35,"withIcon":23,"withoutIcon":12,"usageRate":65.71},"20260406":{"date":"2026-04-06","total":36,"withIcon":28,"withoutIcon":8,"usageRate":77.78}},"lastUpdated":"2026-04-07T23:24:59"};
+let DATA = {"daily":{"20251001":{"date":"2025-10-01","total":39,"withIcon":28,"withoutIcon":11,"usageRate":71.79},"20251002":{"date":"2025-10-02","total":30,"withIcon":17,"withoutIcon":13,"usageRate":56.67},"20251003":{"date":"2025-10-03","total":23,"withIcon":19,"withoutIcon":4,"usageRate":82.61},"20251004":{"date":"2025-10-04","total":55,"withIcon":32,"withoutIcon":23,"usageRate":58.18},"20251005":{"date":"2025-10-05","total":33,"withIcon":21,"withoutIcon":12,"usageRate":63.64},"20251006":{"date":"2025-10-06","total":18,"withIcon":14,"withoutIcon":4,"usageRate":77.78},"20251007":{"date":"2025-10-07","total":32,"withIcon":13,"withoutIcon":19,"usageRate":40.63},"20251008":{"date":"2025-10-08","total":21,"withIcon":14,"withoutIcon":7,"usageRate":66.67},"20251009":{"date":"2025-10-09","total":34,"withIcon":29,"withoutIcon":5,"usageRate":85.29},"20251010":{"date":"2025-10-10","total":34,"withIcon":20,"withoutIcon":14,"usageRate":58.82},"20251011":{"date":"2025-10-11","total":37,"withIcon":26,"withoutIcon":11,"usageRate":70.27},"20251012":{"date":"2025-10-12","total":37,"withIcon":21,"withoutIcon":16,"usageRate":56.76},"20251013":{"date":"2025-10-13","total":55,"withIcon":40,"withoutIcon":15,"usageRate":72.73},"20251014":{"date":"2025-10-14","total":32,"withIcon":18,"withoutIcon":14,"usageRate":56.25},"20251015":{"date":"2025-10-15","total":38,"withIcon":20,"withoutIcon":18,"usageRate":52.63},"20251016":{"date":"2025-10-16","total":32,"withIcon":18,"withoutIcon":14,"usageRate":56.25},"20251017":{"date":"2025-10-17","total":33,"withIcon":18,"withoutIcon":15,"usageRate":54.55},"20251018":{"date":"2025-10-18","total":45,"withIcon":32,"withoutIcon":13,"usageRate":71.11},"20251019":{"date":"2025-10-19","total":35,"withIcon":27,"withoutIcon":8,"usageRate":77.14},"20251020":{"date":"2025-10-20","total":30,"withIcon":20,"withoutIcon":10,"usageRate":66.67},"20251021":{"date":"2025-10-21","total":24,"withIcon":19,"withoutIcon":5,"usageRate":79.17},"20251022":{"date":"2025-10-22","total":20,"withIcon":11,"withoutIcon":9,"usageRate":55},"20251023":{"date":"2025-10-23","total":21,"withIcon":18,"withoutIcon":3,"usageRate":85.71},"20251024":{"date":"2025-10-24","total":24,"withIcon":14,"withoutIcon":10,"usageRate":58.33},"20251025":{"date":"2025-10-25","total":62,"withIcon":43,"withoutIcon":19,"usageRate":69.35},"20251026":{"date":"2025-10-26","total":47,"withIcon":39,"withoutIcon":8,"usageRate":82.98},"20251027":{"date":"2025-10-27","total":38,"withIcon":29,"withoutIcon":9,"usageRate":76.32},"20251028":{"date":"2025-10-28","total":28,"withIcon":20,"withoutIcon":8,"usageRate":71.43},"20251029":{"date":"2025-10-29","total":41,"withIcon":29,"withoutIcon":12,"usageRate":70.73},"20251030":{"date":"2025-10-30","total":31,"withIcon":19,"withoutIcon":12,"usageRate":61.29},"20251031":{"date":"2025-10-31","total":31,"withIcon":21,"withoutIcon":10,"usageRate":67.74},"20251101":{"date":"2025-11-01","total":71,"withIcon":51,"withoutIcon":20,"usageRate":71.83},"20251102":{"date":"2025-11-02","total":62,"withIcon":42,"withoutIcon":20,"usageRate":67.74},"20251103":{"date":"2025-11-03","total":64,"withIcon":40,"withoutIcon":24,"usageRate":62.5},"20251104":{"date":"2025-11-04","total":51,"withIcon":37,"withoutIcon":14,"usageRate":72.55},"20251105":{"date":"2025-11-05","total":51,"withIcon":32,"withoutIcon":19,"usageRate":62.75},"20251106":{"date":"2025-11-06","total":52,"withIcon":31,"withoutIcon":21,"usageRate":59.62},"20251107":{"date":"2025-11-07","total":41,"withIcon":30,"withoutIcon":11,"usageRate":73.17},"20251108":{"date":"2025-11-08","total":58,"withIcon":37,"withoutIcon":21,"usageRate":63.79},"20251109":{"date":"2025-11-09","total":67,"withIcon":46,"withoutIcon":21,"usageRate":68.66},"20251110":{"date":"2025-11-10","total":49,"withIcon":35,"withoutIcon":14,"usageRate":71.43},"20251111":{"date":"2025-11-11","total":39,"withIcon":29,"withoutIcon":10,"usageRate":74.36},"20251112":{"date":"2025-11-12","total":43,"withIcon":22,"withoutIcon":21,"usageRate":51.16},"20251113":{"date":"2025-11-13","total":50,"withIcon":35,"withoutIcon":15,"usageRate":70},"20251114":{"date":"2025-11-14","total":41,"withIcon":26,"withoutIcon":15,"usageRate":63.41},"20251115":{"date":"2025-11-15","total":69,"withIcon":42,"withoutIcon":27,"usageRate":60.87},"20251116":{"date":"2025-11-16","total":74,"withIcon":47,"withoutIcon":27,"usageRate":63.51},"20251117":{"date":"2025-11-17","total":60,"withIcon":37,"withoutIcon":23,"usageRate":61.67},"20251118":{"date":"2025-11-18","total":43,"withIcon":35,"withoutIcon":8,"usageRate":81.4},"20251119":{"date":"2025-11-19","total":41,"withIcon":25,"withoutIcon":16,"usageRate":60.98},"20251120":{"date":"2025-11-20","total":52,"withIcon":38,"withoutIcon":14,"usageRate":73.08},"20251121":{"date":"2025-11-21","total":29,"withIcon":16,"withoutIcon":13,"usageRate":55.17},"20251122":{"date":"2025-11-22","total":96,"withIcon":66,"withoutIcon":30,"usageRate":68.75},"20251123":{"date":"2025-11-23","total":65,"withIcon":43,"withoutIcon":22,"usageRate":66.15},"20251124":{"date":"2025-11-24","total":63,"withIcon":43,"withoutIcon":20,"usageRate":68.25},"20251125":{"date":"2025-11-25","total":41,"withIcon":24,"withoutIcon":17,"usageRate":58.54},"20251126":{"date":"2025-11-26","total":48,"withIcon":36,"withoutIcon":12,"usageRate":75},"20251127":{"date":"2025-11-27","total":47,"withIcon":31,"withoutIcon":16,"usageRate":65.96},"20251128":{"date":"2025-11-28","total":35,"withIcon":21,"withoutIcon":14,"usageRate":60},"20251129":{"date":"2025-11-29","total":53,"withIcon":38,"withoutIcon":15,"usageRate":71.7},"20251130":{"date":"2025-11-30","total":44,"withIcon":28,"withoutIcon":16,"usageRate":63.64},"20251201":{"date":"2025-12-01","total":30,"withIcon":21,"withoutIcon":9,"usageRate":70},"20251202":{"date":"2025-12-02","total":42,"withIcon":37,"withoutIcon":5,"usageRate":88.1},"20251203":{"date":"2025-12-03","total":42,"withIcon":25,"withoutIcon":17,"usageRate":59.52},"20251204":{"date":"2025-12-04","total":32,"withIcon":19,"withoutIcon":13,"usageRate":59.38},"20251205":{"date":"2025-12-05","total":36,"withIcon":28,"withoutIcon":8,"usageRate":77.78},"20251206":{"date":"2025-12-06","total":69,"withIcon":53,"withoutIcon":16,"usageRate":76.81},"20251207":{"date":"2025-12-07","total":53,"withIcon":39,"withoutIcon":14,"usageRate":73.58},"20251208":{"date":"2025-12-08","total":37,"withIcon":28,"withoutIcon":9,"usageRate":75.68},"20251209":{"date":"2025-12-09","total":43,"withIcon":33,"withoutIcon":10,"usageRate":76.74},"20251210":{"date":"2025-12-10","total":42,"withIcon":30,"withoutIcon":12,"usageRate":71.43},"20251211":{"date":"2025-12-11","total":42,"withIcon":34,"withoutIcon":8,"usageRate":80.95},"20251212":{"date":"2025-12-12","total":36,"withIcon":31,"withoutIcon":5,"usageRate":86.11},"20251213":{"date":"2025-12-13","total":52,"withIcon":38,"withoutIcon":14,"usageRate":73.08},"20251214":{"date":"2025-12-14","total":53,"withIcon":41,"withoutIcon":12,"usageRate":77.36},"20251215":{"date":"2025-12-15","total":46,"withIcon":33,"withoutIcon":13,"usageRate":71.74},"20251216":{"date":"2025-12-16","total":38,"withIcon":25,"withoutIcon":13,"usageRate":65.79},"20251217":{"date":"2025-12-17","total":34,"withIcon":25,"withoutIcon":9,"usageRate":73.53},"20251218":{"date":"2025-12-18","total":45,"withIcon":36,"withoutIcon":9,"usageRate":80},"20251219":{"date":"2025-12-19","total":28,"withIcon":20,"withoutIcon":8,"usageRate":71.43},"20251220":{"date":"2025-12-20","total":49,"withIcon":38,"withoutIcon":11,"usageRate":77.55},"20251221":{"date":"2025-12-21","total":39,"withIcon":30,"withoutIcon":9,"usageRate":76.92},"20251222":{"date":"2025-12-22","total":38,"withIcon":29,"withoutIcon":9,"usageRate":76.32},"20251223":{"date":"2025-12-23","total":44,"withIcon":35,"withoutIcon":9,"usageRate":79.55},"20251224":{"date":"2025-12-24","total":29,"withIcon":24,"withoutIcon":5,"usageRate":82.76},"20251225":{"date":"2025-12-25","total":34,"withIcon":25,"withoutIcon":9,"usageRate":73.53},"20251226":{"date":"2025-12-26","total":37,"withIcon":30,"withoutIcon":7,"usageRate":81.08},"20251227":{"date":"2025-12-27","total":69,"withIcon":49,"withoutIcon":20,"usageRate":71.01},"20251228":{"date":"2025-12-28","total":64,"withIcon":47,"withoutIcon":17,"usageRate":73.44},"20251229":{"date":"2025-12-29","total":38,"withIcon":24,"withoutIcon":14,"usageRate":63.16},"20251230":{"date":"2025-12-30","total":55,"withIcon":37,"withoutIcon":18,"usageRate":67.27},"20251231":{"date":"2025-12-31","total":47,"withIcon":29,"withoutIcon":18,"usageRate":61.7},"20260101":{"date":"2026-01-01","total":46,"withIcon":32,"withoutIcon":14,"usageRate":69.57},"20260102":{"date":"2026-01-02","total":47,"withIcon":36,"withoutIcon":11,"usageRate":76.6},"20260103":{"date":"2026-01-03","total":57,"withIcon":35,"withoutIcon":22,"usageRate":61.4},"20260104":{"date":"2026-01-04","total":56,"withIcon":39,"withoutIcon":17,"usageRate":69.64},"20260105":{"date":"2026-01-05","total":44,"withIcon":33,"withoutIcon":11,"usageRate":75},"20260106":{"date":"2026-01-06","total":45,"withIcon":32,"withoutIcon":13,"usageRate":71.11},"20260107":{"date":"2026-01-07","total":42,"withIcon":27,"withoutIcon":15,"usageRate":64.29},"20260108":{"date":"2026-01-08","total":43,"withIcon":26,"withoutIcon":17,"usageRate":60.47},"20260109":{"date":"2026-01-09","total":34,"withIcon":23,"withoutIcon":11,"usageRate":67.65},"20260110":{"date":"2026-01-10","total":64,"withIcon":51,"withoutIcon":13,"usageRate":79.69},"20260111":{"date":"2026-01-11","total":60,"withIcon":48,"withoutIcon":12,"usageRate":80},"20260112":{"date":"2026-01-12","total":59,"withIcon":36,"withoutIcon":23,"usageRate":61.02},"20260113":{"date":"2026-01-13","total":57,"withIcon":49,"withoutIcon":8,"usageRate":85.96},"20260114":{"date":"2026-01-14","total":30,"withIcon":24,"withoutIcon":6,"usageRate":80},"20260115":{"date":"2026-01-15","total":35,"withIcon":26,"withoutIcon":9,"usageRate":74.29},"20260116":{"date":"2026-01-16","total":30,"withIcon":17,"withoutIcon":13,"usageRate":56.67},"20260117":{"date":"2026-01-17","total":61,"withIcon":50,"withoutIcon":11,"usageRate":81.97},"20260118":{"date":"2026-01-18","total":38,"withIcon":29,"withoutIcon":9,"usageRate":76.32},"20260119":{"date":"2026-01-19","total":35,"withIcon":24,"withoutIcon":11,"usageRate":68.57},"20260120":{"date":"2026-01-20","total":48,"withIcon":42,"withoutIcon":6,"usageRate":87.5},"20260121":{"date":"2026-01-21","total":32,"withIcon":23,"withoutIcon":9,"usageRate":71.88},"20260122":{"date":"2026-01-22","total":45,"withIcon":30,"withoutIcon":15,"usageRate":66.67},"20260123":{"date":"2026-01-23","total":29,"withIcon":21,"withoutIcon":8,"usageRate":72.41},"20260124":{"date":"2026-01-24","total":55,"withIcon":38,"withoutIcon":17,"usageRate":69.09},"20260125":{"date":"2026-01-25","total":59,"withIcon":40,"withoutIcon":19,"usageRate":67.8},"20260126":{"date":"2026-01-26","total":44,"withIcon":36,"withoutIcon":8,"usageRate":81.82},"20260127":{"date":"2026-01-27","total":39,"withIcon":29,"withoutIcon":10,"usageRate":74.36},"20260128":{"date":"2026-01-28","total":48,"withIcon":38,"withoutIcon":10,"usageRate":79.17},"20260129":{"date":"2026-01-29","total":33,"withIcon":23,"withoutIcon":10,"usageRate":69.7},"20260130":{"date":"2026-01-30","total":35,"withIcon":29,"withoutIcon":6,"usageRate":82.86},"20260131":{"date":"2026-01-31","total":78,"withIcon":52,"withoutIcon":26,"usageRate":66.67},"20260201":{"date":"2026-02-01","total":80,"withIcon":51,"withoutIcon":29,"usageRate":63.75},"20260202":{"date":"2026-02-02","total":38,"withIcon":23,"withoutIcon":15,"usageRate":60.53},"20260203":{"date":"2026-02-03","total":53,"withIcon":39,"withoutIcon":14,"usageRate":73.58},"20260204":{"date":"2026-02-04","total":43,"withIcon":29,"withoutIcon":14,"usageRate":67.44},"20260205":{"date":"2026-02-05","total":49,"withIcon":31,"withoutIcon":18,"usageRate":63.27},"20260206":{"date":"2026-02-06","total":64,"withIcon":45,"withoutIcon":19,"usageRate":70.31},"20260207":{"date":"2026-02-07","total":56,"withIcon":42,"withoutIcon":14,"usageRate":75},"20260208":{"date":"2026-02-08","total":65,"withIcon":49,"withoutIcon":16,"usageRate":75.38},"20260209":{"date":"2026-02-09","total":55,"withIcon":39,"withoutIcon":16,"usageRate":70.91},"20260210":{"date":"2026-02-10","total":49,"withIcon":37,"withoutIcon":12,"usageRate":75.51},"20260211":{"date":"2026-02-11","total":73,"withIcon":51,"withoutIcon":22,"usageRate":69.86},"20260212":{"date":"2026-02-12","total":71,"withIcon":55,"withoutIcon":16,"usageRate":77.46},"20260213":{"date":"2026-02-13","total":36,"withIcon":24,"withoutIcon":12,"usageRate":66.67},"20260214":{"date":"2026-02-14","total":72,"withIcon":53,"withoutIcon":19,"usageRate":73.61},"20260215":{"date":"2026-02-15","total":74,"withIcon":58,"withoutIcon":16,"usageRate":78.38},"20260216":{"date":"2026-02-16","total":46,"withIcon":37,"withoutIcon":9,"usageRate":80.43},"20260217":{"date":"2026-02-17","total":48,"withIcon":37,"withoutIcon":11,"usageRate":77.08},"20260218":{"date":"2026-02-18","total":36,"withIcon":22,"withoutIcon":14,"usageRate":61.11},"20260219":{"date":"2026-02-19","total":60,"withIcon":41,"withoutIcon":19,"usageRate":68.33},"20260220":{"date":"2026-02-20","total":40,"withIcon":31,"withoutIcon":9,"usageRate":77.5},"20260221":{"date":"2026-02-21","total":80,"withIcon":62,"withoutIcon":18,"usageRate":77.5},"20260222":{"date":"2026-02-22","total":56,"withIcon":39,"withoutIcon":17,"usageRate":69.64},"20260223":{"date":"2026-02-23","total":76,"withIcon":62,"withoutIcon":14,"usageRate":81.58},"20260224":{"date":"2026-02-24","total":56,"withIcon":41,"withoutIcon":15,"usageRate":73.21},"20260225":{"date":"2026-02-25","total":53,"withIcon":42,"withoutIcon":11,"usageRate":79.25},"20260226":{"date":"2026-02-26","total":47,"withIcon":39,"withoutIcon":8,"usageRate":82.98},"20260227":{"date":"2026-02-27","total":45,"withIcon":39,"withoutIcon":6,"usageRate":86.67},"20260228":{"date":"2026-02-28","total":79,"withIcon":61,"withoutIcon":18,"usageRate":77.22},"20260301":{"date":"2026-03-01","total":74,"withIcon":53,"withoutIcon":21,"usageRate":71.62},"20260302":{"date":"2026-03-02","total":47,"withIcon":33,"withoutIcon":14,"usageRate":70.21},"20260303":{"date":"2026-03-03","total":47,"withIcon":34,"withoutIcon":13,"usageRate":72.34},"20260304":{"date":"2026-03-04","total":52,"withIcon":37,"withoutIcon":15,"usageRate":71.15},"20260305":{"date":"2026-03-05","total":42,"withIcon":30,"withoutIcon":12,"usageRate":71.43},"20260306":{"date":"2026-03-06","total":44,"withIcon":27,"withoutIcon":17,"usageRate":61.36},"20260307":{"date":"2026-03-07","total":65,"withIcon":50,"withoutIcon":15,"usageRate":76.92},"20260308":{"date":"2026-03-08","total":62,"withIcon":44,"withoutIcon":18,"usageRate":70.97},"20260309":{"date":"2026-03-09","total":54,"withIcon":37,"withoutIcon":17,"usageRate":68.52},"20260310":{"date":"2026-03-10","total":25,"withIcon":16,"withoutIcon":9,"usageRate":64},"20260311":{"date":"2026-03-11","total":45,"withIcon":35,"withoutIcon":10,"usageRate":77.78},"20260312":{"date":"2026-03-12","total":32,"withIcon":25,"withoutIcon":7,"usageRate":78.13},"20260313":{"date":"2026-03-13","total":53,"withIcon":32,"withoutIcon":21,"usageRate":60.38},"20260314":{"date":"2026-03-14","total":67,"withIcon":47,"withoutIcon":20,"usageRate":70.15},"20260315":{"date":"2026-03-15","total":58,"withIcon":39,"withoutIcon":19,"usageRate":67.24},"20260316":{"date":"2026-03-16","total":62,"withIcon":40,"withoutIcon":22,"usageRate":64.52},"20260317":{"date":"2026-03-17","total":56,"withIcon":44,"withoutIcon":12,"usageRate":78.57},"20260318":{"date":"2026-03-18","total":48,"withIcon":33,"withoutIcon":15,"usageRate":68.75},"20260319":{"date":"2026-03-19","total":36,"withIcon":27,"withoutIcon":9,"usageRate":75},"20260320":{"date":"2026-03-20","total":50,"withIcon":37,"withoutIcon":13,"usageRate":74},"20260321":{"date":"2026-03-21","total":48,"withIcon":31,"withoutIcon":17,"usageRate":64.58},"20260322":{"date":"2026-03-22","total":52,"withIcon":39,"withoutIcon":13,"usageRate":75},"20260323":{"date":"2026-03-23","total":56,"withIcon":36,"withoutIcon":20,"usageRate":64.29},"20260324":{"date":"2026-03-24","total":50,"withIcon":32,"withoutIcon":18,"usageRate":64},"20260325":{"date":"2026-03-25","total":41,"withIcon":27,"withoutIcon":14,"usageRate":65.85},"20260326":{"date":"2026-03-26","total":51,"withIcon":40,"withoutIcon":11,"usageRate":78.43},"20260327":{"date":"2026-03-27","total":36,"withIcon":24,"withoutIcon":12,"usageRate":66.67},"20260328":{"date":"2026-03-28","total":59,"withIcon":41,"withoutIcon":18,"usageRate":69.49},"20260329":{"date":"2026-03-29","total":50,"withIcon":34,"withoutIcon":16,"usageRate":68},"20260330":{"date":"2026-03-30","total":54,"withIcon":34,"withoutIcon":20,"usageRate":62.96},"20260331":{"date":"2026-03-31","total":37,"withIcon":28,"withoutIcon":9,"usageRate":75.68},"20260401":{"date":"2026-04-01","total":36,"withIcon":26,"withoutIcon":10,"usageRate":72.22},"20260402":{"date":"2026-04-02","total":31,"withIcon":23,"withoutIcon":8,"usageRate":74.19},"20260403":{"date":"2026-04-03","total":26,"withIcon":19,"withoutIcon":7,"usageRate":73.08},"20260404":{"date":"2026-04-04","total":57,"withIcon":40,"withoutIcon":17,"usageRate":70.18},"20260405":{"date":"2026-04-05","total":35,"withIcon":23,"withoutIcon":12,"usageRate":65.71},"20260406":{"date":"2026-04-06","total":36,"withIcon":28,"withoutIcon":8,"usageRate":77.78},"20260408":{"date":"2026-04-08","total":41,"withIcon":23,"withoutIcon":18,"usageRate":56.1}},"lastUpdated":"2026-04-08T00:00:00"};
 // ===== END DATA =====
 
-const WEEKDAYS = ['日','月','火','水','木','金','土'];
+const WEEKDAYS = ['æ¥','æ','ç«','æ°´','æ¨','é','å'];
 let monthlyChart = null;
 
 function init() {
@@ -349,7 +349,7 @@ function renderAll(data) {
 
   document.getElementById('overallRate').textContent = overallRate + '%';
   document.getElementById('overallPeriod').textContent =
-    dates.length > 0 ? formatDate(dates[0]) + ' 〜 ' + formatDate(dates[dates.length-1]) : '';
+    dates.length > 0 ? formatDate(dates[0]) + ' ã ' + formatDate(dates[dates.length-1]) : '';
 
   // Current month stats
   const now = new Date();
@@ -360,7 +360,7 @@ function renderAll(data) {
     const mRate = (currentMonth.withIcon / currentMonth.total * 100).toFixed(1);
     document.getElementById('monthRate').textContent = mRate + '%';
     document.getElementById('monthLabel').textContent =
-      `${currentMonth.withIcon}件 / ${currentMonth.total}件（${currentMonth.days}日分）`;
+      `${currentMonth.withIcon}ä»¶ / ${currentMonth.total}ä»¶ï¼${currentMonth.days}æ¥åï¼`;
   }
 
   // Today
@@ -370,21 +370,21 @@ function renderAll(data) {
     const tRate = (today.withIcon / today.total * 100).toFixed(1);
     document.getElementById('todayRate').textContent = tRate + '%';
     document.getElementById('todayDetail').textContent =
-      `使用 ${today.withIcon}件 / 全 ${today.total}件`;
+      `ä½¿ç¨ ${today.withIcon}ä»¶ / å¨ ${today.total}ä»¶`;
   } else {
     document.getElementById('todayRate').textContent = '--';
-    document.getElementById('todayDetail').textContent = '本日のデータなし';
+    document.getElementById('todayDetail').textContent = 'æ¬æ¥ã®ãã¼ã¿ãªã';
   }
 
   // Total days
-  document.getElementById('totalDays').textContent = dates.length + '日';
-  document.getElementById('totalDaysSub').textContent = `全 ${totalAll}件を集計`;
+  document.getElementById('totalDays').textContent = dates.length + 'æ¥';
+  document.getElementById('totalDaysSub').textContent = `å¨ ${totalAll}ä»¶ãéè¨`;
 
   // Last updated
   if (data.lastUpdated) {
     const lu = new Date(data.lastUpdated);
     document.getElementById('lastUpdated').textContent =
-      `最終更新: ${lu.getFullYear()}/${(lu.getMonth()+1)}/${lu.getDate()}`;
+      `æçµæ´æ°: ${lu.getFullYear()}/${(lu.getMonth()+1)}/${lu.getDate()}`;
   }
 
   renderMonthlyChart(monthlyData);
@@ -427,21 +427,21 @@ function renderMonthlyChart(monthlyData) {
       labels,
       datasets: [
         {
-          label: '使用',
+          label: 'ä½¿ç¨',
           data: withCounts,
           backgroundColor: 'rgba(0,121,209,0.8)',
           borderRadius: 4,
           order: 2
         },
         {
-          label: '未使用',
+          label: 'æªä½¿ç¨',
           data: withoutCounts,
           backgroundColor: 'rgba(209,213,219,0.8)',
           borderRadius: 4,
           order: 3
         },
         {
-          label: '使用率',
+          label: 'ä½¿ç¨ç',
           data: rates,
           type: 'line',
           borderColor: '#22c55e',
@@ -468,7 +468,7 @@ function renderMonthlyChart(monthlyData) {
               const idx = items[0].dataIndex;
               const k = Object.keys(monthlyData).sort()[idx];
               const m = monthlyData[k];
-              return `集計日数: ${m.days}日`;
+              return `éè¨æ¥æ°: ${m.days}æ¥`;
             }
           }
         }
@@ -477,12 +477,12 @@ function renderMonthlyChart(monthlyData) {
         x: { grid: { display: false } },
         y: {
           stacked: true,
-          title: { display: true, text: '件数' },
+          title: { display: true, text: 'ä»¶æ°' },
           beginAtZero: true
         },
         y1: {
           position: 'right',
-          title: { display: true, text: '使用率 (%)' },
+          title: { display: true, text: 'ä½¿ç¨ç (%)' },
           min: 0,
           max: 100,
           grid: { drawOnChartArea: false },
@@ -501,7 +501,509 @@ function renderMonthlyTable(monthlyData) {
   keys.forEach((k, i) => {
     const m = monthlyData[k];
     const rate = m.total > 0 ? (m.withIcon / m.total * 100).toFixed(1) : 0;
-    const label = k.substring(0,4) + '年' + parseInt(k.substring(4)) + '月';
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ãã¸ã¹ãæ¯æ ä½¿ç¨çããã·ã¥ãã¼ã</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root {
+    --primary: #0079D
+    --primary-light: #e6f2fb;
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-500: #6b7280;
+    --gray-700: #374151;
+    --gray-900: #111827;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+    background: var(--gray-50);
+    color: var(--gray-900);
+    line-height: 1.6;
+  }
+
+  .header {
+    background: linear-gradient(135deg, var(--primary), #005a9e);
+    color: white;
+    padding: 24px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .header h1 { font-size: 22px; font-weight: 700; }
+  .header .subtitle { font-size: 13px; opacity: 0.85; margin-top: 4px; }
+
+  .header-actions { display: flex; gap: 10px; align-items: center; }
+
+  .btn {
+    padding: 8px 18px;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-white { background: white; color: var(--primary); }
+  .btn-white:hover { background: var(--gray-100); }
+  .btn-outline { background: transparent; color: white; border: 1px solid rgba(255,255,255,0.5); }
+  .btn-outline:hover { background: rgba(255,255,255,0.15); }
+
+  .container { max-width: 1280px; margin: 0 auto; padding: 24px; }
+
+  /* Summary Cards */
+  .summary-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    border: 1px solid var(--gray-200);
+  }
+
+  .card-label { font-size: 12px; color: var(--gray-500); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+  .card-value { font-size: 32px; font-weight: 800; margin: 6px 0 2px; }
+  .card-sub { font-size: 13px; color: var(--gray-500); }
+  .card-value.primary { color: var(--primary); }
+  .card-value.success { color: var(--success); }
+  .card-value.warning { color: var(--warning); }
+
+  /* Sections */
+  .section {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    border: 1px solid var(--gray-200);
+  }
+
+  .section-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--gray-100);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .section-title .badge {
+    font-size: 11px;
+    background: var(--primary-light);
+    color: var(--primary);
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+
+  /* Chart */
+  .chart-container { position: relative; height: 320px; margin: 16px 0; }
+
+  /* Tables */
+  .data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .data-table th {
+    background: var(--gray-50);
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--gray-700);
+    border-bottom: 2px solid var(--gray-200);
+    white-space: nowrap;
+  }
+  .data-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .data-table tbody tr:hover { background: var(--gray-50); }
+
+  .rate-bar {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+  }
+  .rate-bar-track {
+    flex: 1;
+    height: 8px;
+    background: var(--gray-200);
+    border-radius: 4px;
+    overflow: hidden;
+    min-width: 80px;
+  }
+  .rate-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.5s ease;
+  }
+  .rate-bar-label { font-weight: 700; min-width: 50px; text-align: right; }
+
+  .rate-high .rate-bar-fill { background: var(--success); }
+  .rate-high .rate-bar-label { color: var(--success); }
+  .rate-mid .rate-bar-fill { background: var(--warning); }
+  .rate-mid .rate-bar-label { color: var(--warning); }
+  .rate-low .rate-bar-fill { background: var(--danger); }
+  .rate-low .rate-bar-label { color: var(--danger); }
+
+  .text-right, .data-table th.text-right, .data-table td.text-right { text-align: right; }
+  .text-center, .data-table th.text-center, .data-table td.text-center { text-align: center; }
+  .font-mono { font-family: 'SF Mono', 'Fira Code', monospace; }
+
+  /* Tabs */
+  .tabs { display: flex; gap: 4px; margin-bottom: 16px; }
+  .tab {
+    padding: 8px 16px;
+    border: none;
+    background: var(--gray-100);
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--gray-500);
+    transition: all 0.2s;
+  }
+  .tab.active { background: var(--primary); color: white; }
+  .tab:hover:not(.active) { background: var(--gray-200); }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* Period selector */
+  .period-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--gray-500);
+    margin-bottom: 12px;
+  }
+  .period-info strong { color: var(--gray-900); }
+
+  /* File input */
+  .file-input-area {
+    border: 2px dashed var(--gray-300);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 16px;
+    display: none;
+  }
+  .file-input-area:hover { border-color: var(--primary); background: var(--primary-light); }
+  .file-input-area.show { display: block; }
+
+  .last-updated { font-size: 12px; color: rgba(255,255,255,0.7); }
+
+  @media (max-width: 768px) {
+    .container { padding: 16px; }
+    .header { padding: 16px; }
+    .summary-cards { grid-template-columns: repeat(2, 1fr); }
+    .chart-container { height: 250px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1>ãã¸ã¹ãæ¯æ ä½¿ç¨çããã·ã¥ãã¼ã</h1>
+    <div class="subtitle">ã¨ã©ããLAã¯ãªããã¯</div>
+  </div>
+  <div class="header-actions">
+    <span class="last-updated" id="lastUpdated"></span>
+    <button class="btn btn-outline" onclick="toggleFileInput()">ãã¼ã¿èª­è¾¼</button>
+  </div>
+</div>
+
+<div class="container">
+  <!-- File Input -->
+  <div class="file-input-area" id="fileInputArea">
+    <input type="file" id="fileInput" accept=".json" style="display:none" onchange="loadFile(event)">
+    <p style="margin-bottom:8px; font-weight:600;">digisma_data.json ãé¸æãã¦ãã ãã</p>
+    <p style="font-size:12px; color:var(--gray-500);">ææ°ã®ãã¼ã¿ãã¡ã¤ã«ããã©ãã°ï¼ãã­ããã¾ãã¯ã¯ãªãã¯ãã¦èª­ã¿è¾¼ã¿</p>
+  </div>
+
+  <!-- Summary Cards -->
+  <div class="summary-cards" id="summaryCards">
+    <div class="card">
+      <div class="card-label">å¨ä½ ä½¿ç¨ç</div>
+      <div class="card-value primary" id="overallRate">--%</div>
+      <div class="card-sub" id="overallPeriod">2025/10/01ã</div>
+    </div>
+    <div class="card">
+      <div class="card-label">ä»æ ä½¿ç¨ç</div>
+      <div class="card-value success" id="monthRate">--%</div>
+      <div class="card-sub" id="monthLabel"></div>
+    </div>
+    <div class="card">
+      <div class="card-label">æ¬æ¥</div>
+      <div class="card-value" id="todayRate">--%</div>
+      <div class="card-sub" id="todayDetail"></div>
+    </div>
+    <div class="card">
+      <div class="card-label">éè¨æ¥æ°</div>
+      <div class="card-value" style="color:var(--gray-700)" id="totalDays">--</div>
+      <div class="card-sub" id="totalDaysSub"></div>
+    </div>
+  </div>
+
+  <!-- Monthly Comparison Chart -->
+  <div class="section">
+    <div class="section-title">
+      ææ¬¡æ¨ç§»
+      <span class="badge">æå¥æ¯è¼</span>
+    </div>
+    <div class="chart-container">
+      <canvas id="monthlyChart"></canvas>
+    </div>
+  </div>
+
+  <!-- Tabs: Monthly / Daily -->
+  <div class="section">
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('monthly')">ææ¬¡éè¨</button>
+      <button class="tab" onclick="switchTab('daily')">æ¥æ¬¡ãã¼ã¿</button>
+    </div>
+
+    <!-- Monthly Table -->
+    <div class="tab-content active" id="tab-monthly">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width:90px;">æ</th>
+            <th style="width:70px;" class="text-right">ç·ä»¶æ°</th>
+            <th style="width:70px;" class="text-right">ä½¿ç¨</th>
+            <th style="width:70px;" class="text-right">æªä½¿ç¨</th>
+            <th>ä½¿ç¨ç</th>
+            <th style="width:80px;" class="text-right">åææ¯</th>
+          </tr>
+        </thead>
+        <tbody id="monthlyTableBody"></tbody>
+      </table>
+    </div>
+
+    <!-- Daily Table -->
+    <div class="tab-content" id="tab-daily">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width:130px;">æ¥ä»</th>
+            <th style="width:50px;" class="text-center">ææ¥</th>
+            <th style="width:70px;" class="text-right">ç·ä»¶æ°</th>
+            <th style="width:70px;" class="text-right">ä½¿ç¨</th>
+            <th style="width:70px;" class="text-right">æªä½¿ç¨</th>
+            <th>ä½¿ç¨ç</th>
+          </tr>
+        </thead>
+        <tbody id="dailyTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== EMBEDDED DATA (updated by collection script) =====
+let DATA = {"daily":{"20251001":{"date":"2025-10-01","total":39,"withIcon":28,"withoutIcon":11,"usageRate":71.79},"20251002":{"date":"2025-10-02","total":30,"withIcon":17,"withoutIcon":13,"usageRate":56.67},"20251003":{"date":"2025-10-03","total":23,"withIcon":19,"withoutIcon":4,"usageRate":82.61},"20251004":{"date":"2025-10-04","total":55,"withIcon":32,"withoutIcon":23,"usageRate":58.18},"20251005":{"date":"2025-10-05","total":33,"withIcon":21,"withoutIcon":12,"usageRate":63.64},"20251006":{"date":"2025-10-06","total":18,"withIcon":14,"withoutIcon":4,"usageRate":77.78},"20251007":{"date":"2025-10-07","total":32,"withIcon":13,"withoutIcon":19,"usageRate":40.63},"20251008":{"date":"2025-10-08","total":21,"withIcon":14,"withoutIcon":7,"usageRate":66.67},"20251009":{"date":"2025-10-09","total":34,"withIcon":29,"withoutIcon":5,"usageRate":85.29},"20251010":{"date":"2025-10-10","total":34,"withIcon":20,"withoutIcon":14,"usageRate":58.82},"20251011":{"date":"2025-10-11","total":37,"withIcon":26,"withoutIcon":11,"usageRate":70.27},"20251012":{"date":"2025-10-12","total":37,"withIcon":21,"withoutIcon":16,"usageRate":56.76},"20251013":{"date":"2025-10-13","total":55,"withIcon":40,"withoutIcon":15,"usageRate":72.73},"20251014":{"date":"2025-10-14","total":32,"withIcon":18,"withoutIcon":14,"usageRate":56.25},"20251015":{"date":"2025-10-15","total":38,"withIcon":20,"withoutIcon":18,"usageRate":52.63},"20251016":{"date":"2025-10-16","total":32,"withIcon":18,"withoutIcon":14,"usageRate":56.25},"20251017":{"date":"2025-10-17","total":33,"withIcon":18,"withoutIcon":15,"usageRate":54.55},"20251018":{"date":"2025-10-18","total":45,"withIcon":32,"withoutIcon":13,"usageRate":71.11},"20251019":{"date":"2025-10-19","total":35,"withIcon":27,"withoutIcon":8,"usageRate":77.14},"20251020":{"date":"2025-10-20","total":30,"withIcon":20,"withoutIcon":10,"usageRate":66.67},"20251021":{"date":"2025-10-21","total":24,"withIcon":19,"withoutIcon":5,"usageRate":79.17},"20251022":{"date":"2025-10-22","total":20,"withIcon":11,"withoutIcon":9,"usageRate":55},"20251023":{"date":"2025-10-23","total":21,"withIcon":18,"withoutIcon":3,"usageRate":85.71},"20251024":{"date":"2025-10-24","total":24,"withIcon":14,"withoutIcon":10,"usageRate":58.33},"20251025":{"date":"2025-10-25","total":62,"withIcon":43,"withoutIcon":19,"usageRate":69.35},"20251026":{"date":"2025-10-26","total":47,"withIcon":39,"withoutIcon":8,"usageRate":82.98},"20251027":{"date":"2025-10-27","total":38,"withIcon":29,"withoutIcon":9,"usageRate":76.32},"20251028":{"date":"2025-10-28","total":28,"withIcon":20,"withoutIcon":8,"usageRate":71.43},"20251029":{"date":"2025-10-29","total":41,"withIcon":29,"withoutIcon":12,"usageRate":70.73},"20251030":{"date":"2025-10-30","total":31,"withIcon":19,"withoutIcon":12,"usageRate":61.29},"20251031":{"date":"2025-10-31","total":31,"withIcon":21,"withoutIcon":10,"usageRate":67.74},"20251101":{"date":"2025-11-01","total":71,"withIcon":51,"withoutIcon":20,"usageRate":71.83},"20251102":{"date":"2025-11-02","total":62,"withIcon":42,"withoutIcon":20,"usageRate":67.74},"20251103":{"date":"2025-11-03","total":64,"withIcon":40,"withoutIcon":24,"usageRate":62.5},"20251104":{"date":"2025-11-04","total":51,"withIcon":37,"withoutIcon":14,"usageRate":72.55},"20251105":{"date":"2025-11-05","total":51,"withIcon":32,"withoutIcon":19,"usageRate":62.75},"20251106":{"date":"2025-11-06","total":52,"withIcon":31,"withoutIcon":21,"usageRate":59.62},"20251107":{"date":"2025-11-07","total":41,"withIcon":30,"withoutIcon":11,"usageRate":73.17},"20251108":{"date":"2025-11-08","total":58,"withIcon":37,"withoutIcon":21,"usageRate":63.79},"20251109":{"date":"2025-11-09","total":67,"withIcon":46,"withoutIcon":21,"usageRate":68.66},"20251110":{"date":"2025-11-10","total":49,"withIcon":35,"withoutIcon":14,"usageRate":71.43},"20251111":{"date":"2025-11-11","total":39,"withIcon":29,"withoutIcon":10,"usageRate":74.36},"20251112":{"date":"2025-11-12","total":43,"withIcon":22,"withoutIcon":21,"usageRate":51.16},"20251113":{"date":"2025-11-13","total":50,"withIcon":35,"withoutIcon":15,"usageRate":70},"20251114":{"date":"2025-11-14","total":41,"withIcon":26,"withoutIcon":15,"usageRate":63.41},"20251115":{"date":"2025-11-15","total":69,"withIcon":42,"withoutIcon":27,"usageRate":60.87},"20251116":{"date":"2025-11-16","total":74,"withIcon":47,"withoutIcon":27,"usageRate":63.51},"20251117":{"date":"2025-11-17","total":60,"withIcon":37,"withoutIcon":23,"usageRate":61.67},"20251118":{"date":"2025-11-18","total":43,"withIcon":35,"withoutIcon":8,"usageRate":81.4},"20251119":{"date":"2025-11-19","total":41,"withIcon":25,"withoutIcon":16,"usageRate":60.98},"20251120":{"date":"2025-11-20","total":52,"withIcon":38,"withoutIcon":14,"usageRate":73.08},"20251121":{"date":"2025-11-21","total":29,"withIcon":16,"withoutIcon":13,"usageRate":55.17},"20251122":{"date":"2025-11-22","total":96,"withIcon":66,"withoutIcon":30,"usageRate":68.75},"20251123":{"date":"2025-11-23","total":65,"withIcon":43,"withoutIcon":22,"usageRate":66.15},"20251124":{"date":"2025-11-24","total":63,"withIcon":43,"withoutIcon":20,"usageRate":68.25},"20251125":{"date":"2025-11-25","total":41,"withIcon":24,"withoutIcon":17,"usageRate":58.54},"20251126":{"date":"2025-11-26","total":48,"withIcon":36,"withoutIcon":12,"usageRate":75},"20251127":{"date":"2025-11-27","total":47,"withIcon":31,"withoutIcon":16,"usageRate":65.96},"20251128":{"date":"2025-11-28","total":35,"withIcon":21,"withoutIcon":14,"usageRate":60},"20251129":{"date":"2025-11-29","total":53,"withIcon":38,"withoutIcon":15,"usageRate":71.7},"20251130":{"date":"2025-11-30","total":44,"withIcon":28,"withoutIcon":16,"usageRate":63.64},"20251201":{"date":"2025-12-01","total":30,"withIcon":21,"withoutIcon":9,"usageRate":70},"20251202":{"date":"2025-12-02","total":42,"withIcon":37,"withoutIcon":5,"usageRate":88.1},"20251203":{"date":"2025-12-03","total":42,"withIcon":25,"withoutIcon":17,"usageRate":59.52},"20251204":{"date":"2025-12-04","total":32,"withIcon":19,"withoutIcon":13,"usageRate":59.38},"20251205":{"date":"2025-12-05","total":36,"withIcon":28,"withoutIcon":8,"usageRate":77.78},"20251206":{"date":"2025-12-06","total":69,"withIcon":53,"withoutIcon":16,"usageRate":76.81},"20251207":{"date":"2025-12-07","total":53,"withIcon":39,"withoutIcon":14,"usageRate":73.58},"20251208":{"date":"2025-12-08","total":37,"withIcon":28,"withoutIcon":9,"usageRate":75.68},"20251209":{"date":"2025-12-09","total":43,"withIcon":33,"withoutIcon":10,"usageRate":76.74},"20251210":{"date":"2025-12-10","total":42,"withIcon":30,"withoutIcon":12,"usageRate":71.43},"20251211":{"date":"2025-12-11","total":42,"withIcon":34,"withoutIcon":8,"usageRate":80.95},"20251212":{"date":"2025-12-12","total":36,"withIcon":31,"withoutIcon":5,"usageRate":86.11},"20251213":{"date":"2025-12-13","total":52,"withIcon":38,"withoutIcon":14,"usageRate":73.08},"20251214":{"date":"2025-12-14","total":53,"withIcon":41,"withoutIcon":12,"usageRate":77.36},"20251215":{"date":"2025-12-15","total":46,"withIcon":33,"withoutIcon":13,"usageRate":71.74},"20251216":{"date":"2025-12-16","total":38,"withIcon":25,"withoutIcon":13,"usageRate":65.79},"20251217":{"date":"2025-12-17","total":34,"withIcon":25,"withoutIcon":9,"usageRate":73.53},"20251218":{"date":"2025-12-18","total":45,"withIcon":36,"withoutIcon":9,"usageRate":80},"20251219":{"date":"2025-12-19","total":28,"withIcon":20,"withoutIcon":8,"usageRate":71.43},"20251220":{"date":"2025-12-20","total":49,"withIcon":38,"withoutIcon":11,"usageRate":77.55},"20251221":{"date":"2025-12-21","total":39,"withIcon":30,"withoutIcon":9,"usageRate":76.92},"20251222":{"date":"2025-12-22","total":38,"withIcon":29,"withoutIcon":9,"usageRate":76.32},"20251223":{"date":"2025-12-23","total":44,"withIcon":35,"withoutIcon":9,"usageRate":79.55},"20251224":{"date":"2025-12-24","total":29,"withIcon":24,"withoutIcon":5,"usageRate":82.76},"20251225":{"date":"2025-12-25","total":34,"withIcon":25,"withoutIcon":9,"usageRate":73.53},"20251226":{"date":"2025-12-26","total":37,"withIcon":30,"withoutIcon":7,"usageRate":81.08},"20251227":{"date":"2025-12-27","total":69,"withIcon":49,"withoutIcon":20,"usageRate":71.01},"20251228":{"date":"2025-12-28","total":64,"withIcon":47,"withoutIcon":17,"usageRate":73.44},"20251229":{"date":"2025-12-29","total":38,"withIcon":24,"withoutIcon":14,"usageRate":63.16},"20251230":{"date":"2025-12-30","total":55,"withIcon":37,"withoutIcon":18,"usageRate":67.27},"20251231":{"date":"2025-12-31","total":47,"withIcon":29,"withoutIcon":18,"usageRate":61.7},"20260101":{"date":"2026-01-01","total":46,"withIcon":32,"withoutIcon":14,"usageRate":69.57},"20260102":{"date":"2026-01-02","total":47,"withIcon":36,"withoutIcon":11,"usageRate":76.6},"20260103":{"date":"2026-01-03","total":57,"withIcon":35,"withoutIcon":22,"usageRate":61.4},"20260104":{"date":"2026-01-04","total":56,"withIcon":39,"withoutIcon":17,"usageRate":69.64},"20260105":{"date":"2026-01-05","total":44,"withIcon":33,"withoutIcon":11,"usageRate":75},"20260106":{"date":"2026-01-06","total":45,"withIcon":32,"withoutIcon":13,"usageRate":71.11},"20260107":{"date":"2026-01-07","total":42,"withIcon":27,"withoutIcon":15,"usageRate":64.29},"20260108":{"date":"2026-01-08","total":43,"withIcon":26,"withoutIcon":17,"usageRate":60.47},"20260109":{"date":"2026-01-09","total":34,"withIcon":23,"withoutIcon":11,"usageRate":67.65},"20260110":{"date":"2026-01-10","total":64,"withIcon":51,"withoutIcon":13,"usageRate":79.69},"20260111":{"date":"2026-01-11","total":60,"withIcon":48,"withoutIcon":12,"usageRate":80},"20260112":{"date":"2026-01-12","total":59,"withIcon":36,"withoutIcon":23,"usageRate":61.02},"20260113":{"date":"2026-01-13","total":57,"withIcon":49,"withoutIcon":8,"usageRate":85.96},"20260114":{"date":"2026-01-14","total":30,"withIcon":24,"withoutIcon":6,"usageRate":80},"20260115":{"date":"2026-01-15","total":35,"withIcon":26,"withoutIcon":9,"usageRate":74.29},"20260116":{"date":"2026-01-16","total":30,"withIcon":17,"withoutIcon":13,"usageRate":56.67},"20260117":{"date":"2026-01-17","total":61,"withIcon":50,"withoutIcon":11,"usageRate":81.97},"20260118":{"date":"2026-01-18","total":38,"withIcon":29,"withoutIcon":9,"usageRate":76.32},"20260119":{"date":"2026-01-19","total":35,"withIcon":24,"withoutIcon":11,"usageRate":68.57},"20260120":{"date":"2026-01-20","total":48,"withIcon":42,"withoutIcon":6,"usageRate":87.5},"20260121":{"date":"2026-01-21","total":32,"withIcon":23,"withoutIcon":9,"usageRate":71.88},"20260122":{"date":"2026-01-22","total":45,"withIcon":30,"withoutIcon":15,"usageRate":66.67},"20260123":{"date":"2026-01-23","total":29,"withIcon":21,"withoutIcon":8,"usageRate":72.41},"20260124":{"date":"2026-01-24","total":55,"withIcon":38,"withoutIcon":17,"usageRate":69.09},"20260125":{"date":"2026-01-25","total":59,"withIcon":40,"withoutIcon":19,"usageRate":67.8},"20260126":{"date":"2026-01-26","total":44,"withIcon":36,"withoutIcon":8,"usageRate":81.82},"20260127":{"date":"2026-01-27","total":39,"withIcon":29,"withoutIcon":10,"usageRate":74.36},"20260128":{"date":"2026-01-28","total":48,"withIcon":38,"withoutIcon":10,"usageRate":79.17},"20260129":{"date":"2026-01-29","total":33,"withIcon":23,"withoutIcon":10,"usageRate":69.7},"20260130":{"date":"2026-01-30","total":35,"withIcon":29,"withoutIcon":6,"usageRate":82.86},"20260131":{"date":"2026-01-31","total":78,"withIcon":52,"withoutIcon":26,"usageRate":66.67},"20260201":{"date":"2026-02-01","total":80,"withIcon":51,"withoutIcon":29,"usageRate":63.75},"20260202":{"date":"2026-02-02","total":38,"withIcon":23,"withoutIcon":15,"usageRate":60.53},"20260203":{"date":"2026-02-03","total":53,"withIcon":39,"withoutIcon":14,"usageRate":73.58},"20260204":{"date":"2026-02-04","total":43,"withIcon":29,"withoutIcon":14,"usageRate":67.44},"20260205":{"date":"2026-02-05","total":49,"withIcon":31,"withoutIcon":18,"usageRate":63.27},"20260206":{"date":"2026-02-06","total":64,"withIcon":45,"withoutIcon":19,"usageRate":70.31},"20260207":{"date":"2026-02-07","total":56,"withIcon":42,"withoutIcon":14,"usageRate":75},"20260208":{"date":"2026-02-08","total":65,"withIcon":49,"withoutIcon":16,"usageRate":75.38},"20260209":{"date":"2026-02-09","total":55,"withIcon":39,"withoutIcon":16,"usageRate":70.91},"20260210":{"date":"2026-02-10","total":49,"withIcon":37,"withoutIcon":12,"usageRate":75.51},"20260211":{"date":"2026-02-11","total":73,"withIcon":51,"withoutIcon":22,"usageRate":69.86},"20260212":{"date":"2026-02-12","total":71,"withIcon":55,"withoutIcon":16,"usageRate":77.46},"20260213":{"date":"2026-02-13","total":36,"withIcon":24,"withoutIcon":12,"usageRate":66.67},"20260214":{"date":"2026-02-14","total":72,"withIcon":53,"withoutIcon":19,"usageRate":73.61},"20260215":{"date":"2026-02-15","total":74,"withIcon":58,"withoutIcon":16,"usageRate":78.38},"20260216":{"date":"2026-02-16","total":46,"withIcon":37,"withoutIcon":9,"usageRate":80.43},"20260217":{"date":"2026-02-17","total":48,"withIcon":37,"withoutIcon":11,"usageRate":77.08},"20260218":{"date":"2026-02-18","total":36,"withIcon":22,"withoutIcon":14,"usageRate":61.11},"20260219":{"date":"2026-02-19","total":60,"withIcon":41,"withoutIcon":19,"usageRate":68.33},"20260220":{"date":"2026-02-20","total":40,"withIcon":31,"withoutIcon":9,"usageRate":77.5},"20260221":{"date":"2026-02-21","total":80,"withIcon":62,"withoutIcon":18,"usageRate":77.5},"20260222":{"date":"2026-02-22","total":56,"withIcon":39,"withoutIcon":17,"usageRate":69.64},"20260223":{"date":"2026-02-23","total":76,"withIcon":62,"withoutIcon":14,"usageRate":81.58},"20260224":{"date":"2026-02-24","total":56,"withIcon":41,"withoutIcon":15,"usageRate":73.21},"20260225":{"date":"2026-02-25","total":53,"withIcon":42,"withoutIcon":11,"usageRate":79.25},"20260226":{"date":"2026-02-26","total":47,"withIcon":39,"withoutIcon":8,"usageRate":82.98},"20260227":{"date":"2026-02-27","total":45,"withIcon":39,"withoutIcon":6,"usageRate":86.67},"20260228":{"date":"2026-02-28","total":79,"withIcon":61,"withoutIcon":18,"usageRate":77.22},"20260301":{"date":"2026-03-01","total":74,"withIcon":53,"withoutIcon":21,"usageRate":71.62},"20260302":{"date":"2026-03-02","total":47,"withIcon":33,"withoutIcon":14,"usageRate":70.21},"20260303":{"date":"2026-03-03","total":47,"withIcon":34,"withoutIcon":13,"usageRate":72.34},"20260304":{"date":"2026-03-04","total":52,"withIcon":37,"withoutIcon":15,"usageRate":71.15},"20260305":{"date":"2026-03-05","total":42,"withIcon":30,"withoutIcon":12,"usageRate":71.43},"20260306":{"date":"2026-03-06","total":44,"withIcon":27,"withoutIcon":17,"usageRate":61.36},"20260307":{"date":"2026-03-07","total":65,"withIcon":50,"withoutIcon":15,"usageRate":76.92},"20260308":{"date":"2026-03-08","total":62,"withIcon":44,"withoutIcon":18,"usageRate":70.97},"20260309":{"date":"2026-03-09","total":54,"withIcon":37,"withoutIcon":17,"usageRate":68.52},"20260310":{"date":"2026-03-10","total":25,"withIcon":16,"withoutIcon":9,"usageRate":64},"20260311":{"date":"2026-03-11","total":45,"withIcon":35,"withoutIcon":10,"usageRate":77.78},"20260312":{"date":"2026-03-12","total":32,"withIcon":25,"withoutIcon":7,"usageRate":78.13},"20260313":{"date":"2026-03-13","total":53,"withIcon":32,"withoutIcon":21,"usageRate":60.38},"20260314":{"date":"2026-03-14","total":67,"withIcon":47,"withoutIcon":20,"usageRate":70.15},"20260315":{"date":"2026-03-15","total":58,"withIcon":39,"withoutIcon":19,"usageRate":67.24},"20260316":{"date":"2026-03-16","total":62,"withIcon":40,"withoutIcon":22,"usageRate":64.52},"20260317":{"date":"2026-03-17","total":56,"withIcon":44,"withoutIcon":12,"usageRate":78.57},"20260318":{"date":"2026-03-18","total":48,"withIcon":33,"withoutIcon":15,"usageRate":68.75},"20260319":{"date":"2026-03-19","total":36,"withIcon":27,"withoutIcon":9,"usageRate":75},"20260320":{"date":"2026-03-20","total":50,"withIcon":37,"withoutIcon":13,"usageRate":74},"20260321":{"date":"2026-03-21","total":48,"withIcon":31,"withoutIcon":17,"usageRate":64.58},"20260322":{"date":"2026-03-22","total":52,"withIcon":39,"withoutIcon":13,"usageRate":75},"20260323":{"date":"2026-03-23","total":56,"withIcon":36,"withoutIcon":20,"usageRate":64.29},"20260324":{"date":"2026-03-24","total":50,"withIcon":32,"withoutIcon":18,"usageRate":64},"20260325":{"date":"2026-03-25","total":41,"withIcon":27,"withoutIcon":14,"usageRate":65.85},"20260326":{"date":"2026-03-26","total":51,"withIcon":40,"withoutIcon":11,"usageRate":78.43},"20260327":{"date":"2026-03-27","total":36,"withIcon":24,"withoutIcon":12,"usageRate":66.67},"20260328":{"date":"2026-03-28","total":59,"withIcon":41,"withoutIcon":18,"usageRate":69.49},"20260329":{"date":"2026-03-29","total":50,"withIcon":34,"withoutIcon":16,"usageRate":68},"20260330":{"date":"2026-03-30","total":54,"withIcon":34,"withoutIcon":20,"usageRate":62.96},"20260331":{"date":"2026-03-31","total":37,"withIcon":28,"withoutIcon":9,"usageRate":75.68},"20260401":{"date":"2026-04-01","total":36,"withIcon":26,"withoutIcon":10,"usageRate":72.22},"20260402":{"date":"2026-04-02","total":31,"withIcon":23,"withoutIcon":8,"usageRate":74.19},"20260403":{"date":"2026-04-03","total":26,"withIcon":19,"withoutIcon":7,"usageRate":73.08},"20260404":{"date":"2026-04-04","total":57,"withIcon":40,"withoutIcon":17,"usageRate":70.18},"20260405":{"date":"2026-04-05","total":35,"withIcon":23,"withoutIcon":12,"usageRate":65.71},"20260406":{"date":"2026-04-06","total":36,"withIcon":28,"withoutIcon":8,"usageRate":77.78},"20260408":{"date":"2026-04-08","total":41,"withIcon":23,"withoutIcon":18,"usageRate":56.1}},"lastUpdated":"2026-04-08T00:00:00"};
+// ===== END DATA =====
+
+const WEEKDAYS = ['æ¥','æ','ç«','æ°´','æ¨','é','å'];
+let monthlyChart = null;
+
+function init() {
+  renderAll(DATA);
+}
+
+function renderAll(data) {
+  if (!data || !data.daily) return;
+  const daily = data.daily;
+  const dates = Object.keys(daily).sort();
+
+  // Overall stats
+  let totalAll = 0, withAll = 0, withoutAll = 0;
+  dates.forEach(d => {
+    totalAll += daily[d].total;
+    withAll += daily[d].withIcon;
+    withoutAll += daily[d].withoutIcon;
+  });
+  const overallRate = totalAll > 0 ? (withAll / totalAll * 100).toFixed(1) : 0;
+
+  document.getElementById('overallRate').textContent = overallRate + '%';
+  document.getElementById('overallPeriod').textContent =
+    dates.length > 0 ? formatDate(dates[0]) + ' ã ' + formatDate(dates[dates.length-1]) : '';
+
+  // Current month stats
+  const now = new Date();
+  const currentMonthKey = String(now.getFullYear()) + String(now.getMonth()+1).padStart(2,'0');
+  const monthlyData = aggregateMonthly(daily);
+  const currentMonth = monthlyData[currentMonthKey];
+  if (currentMonth) {
+    const mRate = (currentMonth.withIcon / currentMonth.total * 100).toFixed(1);
+    document.getElementById('monthRate').textContent = mRate + '%';
+    document.getElementById('monthLabel').textContent =
+      `${currentMonth.withIcon}ä»¶ / ${currentMonth.total}ä»¶ï¼${currentMonth.days}æ¥åï¼`;
+  }
+
+  // Today
+  const todayKey = formatDateKey(now);
+  const today = daily[todayKey];
+  if (today) {
+    const tRate = (today.withIcon / today.total * 100).toFixed(1);
+    document.getElementById('todayRate').textContent = tRate + '%';
+    document.getElementById('todayDetail').textContent =
+      `ä½¿ç¨ ${today.withIcon}ä»¶ / å¨ ${today.total}ä»¶`;
+  } else {
+    document.getElementById('todayRate').textContent = '--';
+    document.getElementById('todayDetail').textContent = 'æ¬æ¥ã®ãã¼ã¿ãªã';
+  }
+
+  // Total days
+  document.getElementById('totalDays').textContent = dates.length + 'æ¥';
+  document.getElementById('totalDaysSub').textContent = `å¨ ${totalAll}ä»¶ãéè¨`;
+
+  // Last updated
+  if (data.lastUpdated) {
+    const lu = new Date(data.lastUpdated);
+    document.getElementById('lastUpdated').textContent =
+      `æçµæ´æ°: ${lu.getFullYear()}/${(lu.getMonth()+1)}/${lu.getDate()}`;
+  }
+
+  renderMonthlyChart(monthlyData);
+  renderMonthlyTable(monthlyData);
+  renderDailyTable(daily);
+}
+
+function aggregateMonthly(daily) {
+  const months = {};
+  Object.keys(daily).sort().forEach(key => {
+    const d = daily[key];
+    const mk = key.substring(0, 6); // YYYYMM
+    if (!months[mk]) {
+      months[mk] = { total: 0, withIcon: 0, withoutIcon: 0, days: 0 };
+    }
+    months[mk].total += d.total;
+    months[mk].withIcon += d.withIcon;
+    months[mk].withoutIcon += d.withoutIcon;
+    months[mk].days++;
+  });
+  return months;
+}
+
+function renderMonthlyChart(monthlyData) {
+  const keys = Object.keys(monthlyData).sort();
+  const labels = keys.map(k => k.substring(0,4) + '/' + k.substring(4));
+  const rates = keys.map(k => {
+    const m = monthlyData[k];
+    return m.total > 0 ? +(m.withIcon / m.total * 100).toFixed(1) : 0;
+  });
+  const withCounts = keys.map(k => monthlyData[k].withIcon);
+  const withoutCounts = keys.map(k => monthlyData[k].withoutIcon);
+
+  const ctx = document.getElementById('monthlyChart').getContext('2d');
+  if (monthlyChart) monthlyChart.destroy();
+
+  monthlyChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        {
+          label: 'ä½¿ç¨',
+          data: withCounts,
+          backgroundColor: 'rgba(0,121,209,0.8)',
+          borderRadius: 4,
+          order: 2
+        },
+        {
+          label: 'æªä½¿ç¨',
+          data: withoutCounts,
+          backgroundColor: 'rgba(209,213,219,0.8)',
+          borderRadius: 4,
+          order: 3
+        },
+        {
+          label: 'ä½¿ç¨ç',
+          data: rates,
+          type: 'line',
+          borderColor: '#22c55e',
+          backgroundColor: 'rgba(34,197,94,0.1)',
+          pointBackgroundColor: '#22c55e',
+          pointRadius: 5,
+          pointHoverRadius: 7,
+          borderWidth: 3,
+          fill: false,
+          yAxisID: 'y1',
+          order: 1
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { position: 'top', labels: { usePointStyle: true, padding: 16 } },
+        tooltip: {
+          callbacks: {
+            afterBody: function(items) {
+              const idx = items[0].dataIndex;
+              const k = Object.keys(monthlyData).sort()[idx];
+              const m = monthlyData[k];
+              return `éè¨æ¥æ°: ${m.days}æ¥`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: { grid: { display: false } },
+        y: {
+          stacked: true,
+          title: { display: true, text: 'ä»¶æ°' },
+          beginAtZero: true
+        },
+        y1: {
+          position: 'right',
+          title: { display: true, text: 'ä½¿ç¨ç (%)' },
+          min: 0,
+          max: 100,
+          grid: { drawOnChartArea: false },
+          ticks: { callback: v => v + '%' }
+        }
+      }
+    }
+  });
+}
+
+function renderMonthlyTable(monthlyData) {
+  const keys = Object.keys(monthlyData).sort().reverse();
+  const tbody = document.getElementById('monthlyTableBody');
+  tbody.innerHTML = '';
+
+  keys.forEach((k, i) => {
+    const m = monthlyData[k];
+    const rate = m.total > 0 ? (m.withIcon / m.total * 100).toFixed(1) : 0;
+    const label = k.substring(0,4) + 'å¹´' + parseInt(k.substring(4)) + 'æ';
 
     // Prev month comparison
     let diffHtml = '--';
@@ -512,14 +1014,14 @@ function renderMonthlyTable(monthlyData) {
       const diff = (rate - prevRate).toFixed(1);
       if (diff > 0) diffHtml = `<span style="color:var(--success)">+${diff}%</span>`;
       else if (diff < 0) diffHtml = `<span style="color:var(--danger)">${diff}%</span>`;
-      else diffHtml = `<span style="color:var(--gray-500)">±0%</span>`;
+      else diffHtml = `<span style="color:var(--gray-500)">Â±0%</span>`;
     }
 
     const rateClass = rate >= 70 ? 'rate-high' : rate >= 50 ? 'rate-mid' : 'rate-low';
 
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td><strong>${label}</strong><br><span style="font-size:11px;color:var(--gray-500)">${m.days}日分</span></td>
+      <td><strong>${label}</strong><br><span style="font-size:11px;color:var(--gray-500)">${m.days}æ¥å</span></td>
       <td class="text-right font-mono">${m.total.toLocaleString()}</td>
       <td class="text-right font-mono">${m.withIcon.toLocaleString()}</td>
       <td class="text-right font-mono">${m.withoutIcon.toLocaleString()}</td>
@@ -592,7 +1094,7 @@ function loadFile(e) {
       renderAll(DATA);
       document.getElementById('fileInputArea').classList.remove('show');
     } catch(err) {
-      alert('JSONファイルの読み込みに失敗しました: ' + err.message);
+      alert('JSONãã¡ã¤ã«ã®èª­ã¿è¾¼ã¿ã«å¤±æãã¾ãã: ' + err.message);
     }
   };
   reader.readAsText(file);
